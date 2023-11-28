@@ -1,0 +1,66 @@
+{
+  "env": {
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript"
+  ],
+  "ignorePatterns": [
+    "*.js"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2016,
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "./"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "@typescript-eslint/comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "@typescript-eslint/strict-boolean-expressions": 0,
+    "@typescript-eslint/no-misused-promises": 0,
+    "@typescript-eslint/prefer-nullish-coalescing": 0,
+    "@typescript-eslint/restrict-template-expressions": [
+      "error",
+      {
+        "allowNumber": true,
+        "allowAny": true
+      }
+    ],
+    "multiline-ternary": [
+      "off"
+    ],
+    "react/prop-types": "off"
+  }
+}
