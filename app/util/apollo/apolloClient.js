@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, from, HttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import store from '../../store/index.js'
 import { RetryLink } from '@apollo/client/link/retry'
+import { auth } from '../../config'
 
 const httpLink = new HttpLink({ uri: '/api' })
 
@@ -30,7 +30,6 @@ const retryLink = new RetryLink({
 })
 
 const authLink = setContext(({ headers }) => {
-  const { auth } = store.getState()
   return {
     uri: '/api',
     headers: {

@@ -1,3 +1,0 @@
-export {
-  client
-} from './apollo'

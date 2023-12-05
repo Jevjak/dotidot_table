@@ -9,7 +9,7 @@ describe('EditableTable Component', () => {
     { id: 2, name: 'Item 2', archived: true }
   ]
 
-  const updateDataSource = jest.fn()
+  const handleSave = jest.fn()
 
   const tableConfig = [
     { value: 'id', label: 'ID', type: 'text', editable: false },
@@ -19,7 +19,7 @@ describe('EditableTable Component', () => {
 
   it('Renders the EditableTable component properly', () => {
     render(
-      <EditableTable dataSource={dataSource} updateDataSource={updateDataSource} tableConfig={tableConfig} />
+      <EditableTable dataSource={dataSource} handleSave={handleSave} tableConfig={tableConfig} />
     )
 
     const columnsLabel = screen.getByText('Columns:')
@@ -30,7 +30,7 @@ describe('EditableTable Component', () => {
   })
   it('Handles editing of text fields', () => {
     render(
-      <EditableTable dataSource={dataSource} updateDataSource={updateDataSource} tableConfig={tableConfig} />
+      <EditableTable dataSource={dataSource} handleSave={handleSave} tableConfig={tableConfig} />
     )
     const textInputs = screen.getAllByTestId(/^text-input-\d+$/)
     const specificInput = textInputs[0]
@@ -39,7 +39,7 @@ describe('EditableTable Component', () => {
 
   it('Handles editing of boolean fields', () => {
     render(
-      <EditableTable dataSource={dataSource} updateDataSource={updateDataSource} tableConfig={tableConfig} />
+      <EditableTable dataSource={dataSource} handleSave={handleSave} tableConfig={tableConfig} />
     )
     const checkboxInputs = screen.getAllByTestId(/^checkbox-input-\d+$/)
     const specificInput = checkboxInputs[0]

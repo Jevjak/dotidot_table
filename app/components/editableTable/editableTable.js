@@ -4,7 +4,7 @@ import Select from 'react-select'
 import moment from 'moment'
 import './editableTable.scss'
 
-const EditableTable = ({ dataSource, updateDataSource, tableConfig }) => {
+const EditableTable = ({ dataSource, tableConfig, handleSave }) => {
   const [data, setData] = useState(dataSource)
   const [editedData, setEditedData] = useState([])
   const [visibleColumns, setVisibleColumns] = useState(() => {
@@ -29,25 +29,6 @@ const EditableTable = ({ dataSource, updateDataSource, tableConfig }) => {
       : [...editedData, editedRow]
 
     setEditedData(updatedEditedData)
-  }
-
-  const handleSaveAll = async () => {
-    try {
-      const updatePromises = editedData.map(async item =>
-        await updateDataSource({ id: item.id, name: item.name, archived: item.archived })
-      )
-      const response = await Promise.all(updatePromises)
-      const updatedData = data.map(item => {
-        const editedItem = response.find(res => res.id === item.id)
-        return editedItem ? { ...item, ...editedItem } : item
-      })
-
-      setData(updatedData)
-      setEditedData([])
-    } catch (error) {
-      setData(dataSource)
-      setEditedData([])
-    }
   }
 
   const handleChange = selectedOptions => {
@@ -118,7 +99,7 @@ const EditableTable = ({ dataSource, updateDataSource, tableConfig }) => {
             onChange={handleChange}
           />
         </div>
-        <button onClick={handleSaveAll}>Save All</button>
+        <button onClick={() => handleSave(editedData)}>Save All</button>
       </div>
       <table>
         <thead>

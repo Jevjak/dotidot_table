@@ -1,0 +1,14 @@
+mutation UpdateDataSources($id: BigInt!, $name: String!, $archived: Boolean!) {
+  updateDataSource(id: $id, name: $name, archived: $archived) {
+    dataSource {
+      id
+      name
+      archived
+      createdAt
+      archived
+      icon
+      itemsCount
+      lastImport
+    }
+  }
+}

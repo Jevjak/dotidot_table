@@ -2,20 +2,16 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import React from 'react'
 import { ApolloProvider } from '@apollo/client'
-import { createRoot } from 'react-dom/client'
-import { Provider } from 'react-redux'
 
 import './index.scss'
-import store from './store/index.js'
 import App from './myapp'
-import { client } from './util/apollo'
+import { client } from './util'
 
-const container = document.getElementById('app-root')
-const root = createRoot(container)
+import ReactDOM from 'react-dom/client'
+
+const root = ReactDOM.createRoot(document.getElementById('app-root'))
 root.render(
-  <Provider store={store}>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </Provider>
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
 )
